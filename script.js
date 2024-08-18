@@ -27,8 +27,27 @@ var Circle = /** @class */ (function (_super) {
         _this.radius = radius;
         return _this;
     }
+    Circle.prototype.drawShape = function () {
+        return "Drawing a circle with radius: ".concat(this.radius);
+    };
     return Circle;
 }(Shape));
+var Oval = /** @class */ (function (_super) {
+    __extends(Oval, _super);
+    function Oval(name, radius) {
+        return _super.call(this, name, radius) || this;
+    }
+    Oval.prototype.drawShape = function () {
+        return "Drawing an oval with some calculation for radius: ".concat(this.radius);
+    };
+    Oval.prototype.drawShapes = function (method) {
+        return "Drawing an oval with some calculation ".concat(method, " method for radius: ").concat(this.radius);
+    };
+    return Oval;
+}(Circle));
 // const myShape = new Shape('My shape'); // This will throw an Error
 var shortCircle = new Circle('Short Circle', 0.5); // This will work fine.
-console.log(shortCircle);
+var someOval = new Oval('Short Circle', 1); // This will work fine.
+console.log(shortCircle.drawShape());
+console.log(someOval.drawShape());
+console.log(someOval.drawShapes('EXCHANGE'));
