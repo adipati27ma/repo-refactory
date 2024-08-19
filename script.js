@@ -48,6 +48,82 @@ var Oval = /** @class */ (function (_super) {
 // const myShape = new Shape('My shape'); // This will throw an Error
 var shortCircle = new Circle('Short Circle', 0.5); // This will work fine.
 var someOval = new Oval('Short Circle', 1); // This will work fine.
-console.log(shortCircle.drawShape());
-console.log(someOval.drawShape());
-console.log(someOval.drawShapes('EXCHANGE'));
+// console.log(shortCircle.drawShape());
+// console.log(someOval.drawShape());
+// console.log(someOval.drawShapes('EXCHANGE'));
+// kelas product (nama, harga, stock) => purchase_quantity berdasarkan stock
+// parent payment ()
+var Product = /** @class */ (function () {
+    function Product(name, price, stock) {
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+    }
+    // docs: getter setter Price
+    Product.prototype.getPrice = function () {
+        return this.price;
+    };
+    Product.prototype.setPrice = function (price) {
+        this.price = price;
+    };
+    // docs: getter setter Stock
+    Product.prototype.getStock = function () {
+        return this.stock;
+    };
+    Product.prototype.setStock = function (stock) {
+        this.stock = stock;
+    };
+    Product.prototype.purchaseQuantity = function (quantity) {
+        this.stock - quantity;
+        var totalPrice = quantity * this.price;
+        return totalPrice;
+    };
+    return Product;
+}());
+var productA = new Product('Product A', 1000, 10);
+console.log('total harga harus dibayar:', productA.purchaseQuantity(2));
+// Polymorphism
+// Buatlah sebuah kelas parent PaymentMethod dengan metode processPayment(amount) yang akan di-override oleh subclass.
+// Buatlah tiga subclass CreditCard, PayPal, dan BankTransfer ya
+var PaymentMethod = /** @class */ (function () {
+    function PaymentMethod() {
+    }
+    PaymentMethod.prototype.processPayment = function (amount) { };
+    return PaymentMethod;
+}());
+var CreditCard = /** @class */ (function (_super) {
+    __extends(CreditCard, _super);
+    function CreditCard() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CreditCard.prototype.processPayment = function (amount) {
+        return "Processing payment for amount: ".concat(amount, " using Credit Card");
+    };
+    return CreditCard;
+}(PaymentMethod));
+var PayPal = /** @class */ (function (_super) {
+    __extends(PayPal, _super);
+    function PayPal() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    PayPal.prototype.processPayment = function (amount) {
+        return "Processing payment for amount: ".concat(amount, " using PAYPAL");
+    };
+    return PayPal;
+}(PaymentMethod));
+var BankTransfer = /** @class */ (function (_super) {
+    __extends(BankTransfer, _super);
+    function BankTransfer() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    BankTransfer.prototype.processPayment = function (amount) {
+        return "Processing payment for amount: ".concat(amount, " using Bank Mandiri");
+    };
+    return BankTransfer;
+}(PaymentMethod));
+var creditA = new CreditCard();
+var paypalA = new PayPal();
+var bankMandiri = new BankTransfer();
+console.log(creditA.processPayment(1000));
+console.log(paypalA.processPayment(1000));
+console.log(bankMandiri.processPayment(1000));
