@@ -51,6 +51,8 @@ var someOval = new Oval('Short Circle', 1); // This will work fine.
 // console.log(shortCircle.drawShape());
 // console.log(someOval.drawShape());
 // console.log(someOval.drawShapes('EXCHANGE'));
+// End of Practice Section_________________________________________________________
+// Encapsulation==========================================================
 // kelas product (nama, harga, stock) => purchase_quantity berdasarkan stock
 // parent payment ()
 var Product = /** @class */ (function () {
@@ -82,7 +84,7 @@ var Product = /** @class */ (function () {
 }());
 var productA = new Product('Product A', 1000, 10);
 console.log('total harga harus dibayar:', productA.purchaseQuantity(2));
-// Polymorphism
+// Polymorphism==========================================================
 // Buatlah sebuah kelas parent PaymentMethod dengan metode processPayment(amount) yang akan di-override oleh subclass.
 // Buatlah tiga subclass CreditCard, PayPal, dan BankTransfer ya
 var PaymentMethod = /** @class */ (function () {
